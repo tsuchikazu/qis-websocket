@@ -1,0 +1,14 @@
+.bundle/
+vendor
+.sass-cache
+npm-debug.log
+vendor/bundle
+*.log
+node_modules/
+app/assets/scss/bourbon/
+app/assets/scss/neat/
+
+public/assets/images/
+public/assets/css/
+public/html/*
+public/js/*.js
