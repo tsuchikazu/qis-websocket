@@ -36,6 +36,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('transition', function(data) {
+    socket.to(room).emit('change route', data);
     socket.to(room).broadcast.emit('change route', data);
     console.log('transition: id:' + socket.id + ' room:' + room);
   });
