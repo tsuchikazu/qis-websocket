@@ -36,13 +36,13 @@ io.on('connection', function(socket){
   });
 
   socket.on('transition', function(data) {
-    socket.broadcast.emit('change route', data);
+    socket.to(room).broadcast.emit('change route', data);
     console.log('transition: id:' + socket.id + ' room:' + room);
   });
 
   socket.on('showAnswer', function(data) {
-    socket.emit('showAnswer', data);
-    socket.broadcast.emit('showAnswer', data);
+    socket.to(room).emit('showAnswer', data);
+    socket.to(room).broadcast.emit('showAnswer', data);
     console.log('showAnswer: id:' + socket.id + ' room:' + room);
   });
 
