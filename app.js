@@ -41,6 +41,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('showAnswer', function(data) {
+    socket.emit('showAnswer', data);
     socket.broadcast.emit('showAnswer', data);
     console.log('showAnswer: id:' + socket.id + ' room:' + room);
   });
