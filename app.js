@@ -24,7 +24,7 @@ io.on('connection', function(socket){
     socket.join(room)
 
     entryUsers = roomEntryUsers[room] || {}
-    entryUsers[socket.id] = entry.name;
+    entryUsers[socket.id] = { name: entry.name, img: entry.img };
 
     socket.to(room).emit('entered', {
       count: Object.keys(entryUsers).length,
