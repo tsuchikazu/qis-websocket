@@ -23,7 +23,7 @@ io.on('connection', function(socket){
     room = entry.room
     socket.join(room)
 
-    entryUsers = roomEntryUsers[room] || {}
+    var entryUsers = roomEntryUsers[room] || {}
     entryUsers[socket.id] = { name: entry.name, img: entry.img };
 
     socket.to(room).emit('entered', {
@@ -33,6 +33,11 @@ io.on('connection', function(socket){
 
     roomEntryUsers[room] = entryUsers
     console.log('entry: id:' + socket.id + ' room:' + room + ' name:'+ entry.name);
+  });
+  socket.on('stamp-send', function(stamp) {
+    console.log(stamp)
+    room = stamp.room;
+    socket.to(room).emit('stamp-send', stamp);
   });
 
   socket.on('transition', function(data) {
@@ -64,7 +69,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function() {
     console.log('disconnect');
 
-    entryUsers = roomEntryUsers[room] || {}
+    var entryUsers = roomEntryUsers[room] || {}
     delete entryUsers[socket.id];
     roomEntryUsers[room] = entryUsers
 
